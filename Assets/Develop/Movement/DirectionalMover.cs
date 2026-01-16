@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class DirectionalMover
 {
-    private float _moveSpeed;
+    private readonly float _moveSpeed;
 
     private Vector3 _currentDirection;
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RigidbodyDirectionalMover : DirectionalMover
 {
-    private Rigidbody _rigidbody;
+    private readonly Rigidbody _rigidbody;
 
     public RigidbodyDirectionalMover(Rigidbody rigidbody, float moveSpeed) : base(moveSpeed)
     {

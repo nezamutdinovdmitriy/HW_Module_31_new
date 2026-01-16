@@ -10,17 +10,22 @@ public class ControllersFactory
         return new PlayerDirectionalRotatableController(rotatable);
     }
 
+    public PlayerShootableController CreatePlayerShootableController(IShootable shootable)
+    {
+        return new PlayerShootableController(shootable);
+    }
+
     public CompositeController CreateCompositeController(Controller[] controllers)
     {
         return new CompositeController(controllers);
     }
 
     public CompositeController CreateMainHeroController(
-        IDirectionMovable movable,
-        IDirectionRotatable rotatable)
+        Character character)
     {
         return new CompositeController(
-            CreatePlayerDirectionalMovableController(movable),
-            CreatePlayerDirectionalRotatableController(rotatable));
+            CreatePlayerDirectionalMovableController(character),
+            CreatePlayerDirectionalRotatableController(character),
+            CreatePlayerShootableController(character));
     }
 }

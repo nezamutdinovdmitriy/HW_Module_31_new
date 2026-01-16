@@ -5,19 +5,22 @@ using Object = UnityEngine.Object;
 public class CharactersFactory
 {
     public Character CreateRigidbodyCharacter(
-        Character prefab,
+        Character characterPrefab,
         Vector3 spawnPosition,
         float moveSpeed,
-        float rotationSpeed)
+        float rotationSpeed,
+        float maxHealth,
+        Projectile projectilePrefab)
     {
-        Character instance = Object.Instantiate(prefab, spawnPosition, Quaternion.identity, null);
+        Character instance = Object.Instantiate(characterPrefab, spawnPosition, Quaternion.identity, null);
 
-        if(instance.TryGetComponent(out Rigidbody rigidbody))
+        if (instance.TryGetComponent(out Rigidbody rigidbody))
         {
-            RigidbodyDirectionalMover mover = new RigidbodyDirectionalMover(rigidbody, moveSpeed);
-            RigidbodyDirectionalRotator rotator = new RigidbodyDirectionalRotator(rigidbody, rotationSpeed);
+            RigidbodyDirectionalMover mover = new(rigidbody, moveSpeed);
+            RigidbodyDirectionalRotator rotator = new(rigidbody, rotationSpeed);
+            Shooter shooter = new(projectilePrefab);
 
-            instance.Initialize(mover, rotator);
+            instance.Initialize(mover, rotator, maxHealth, shooter);
 
             return instance;
         }

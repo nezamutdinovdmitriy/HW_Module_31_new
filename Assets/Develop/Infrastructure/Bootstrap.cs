@@ -16,9 +16,10 @@ public class Bootstrap : MonoBehaviour
         _controllersFactory = new();
 
         MainHeroConfig mainHeroConfig = Resources.Load<MainHeroConfig>("Configs/MainHeroConfig");
+        ProjectileConfig projectileConfig = Resources.Load<ProjectileConfig>("Configs/Combat/ProjectileConfig");
 
         MainHeroFactory mainHeroFactory = new(_controllersUpdateService, _characterFactory, _controllersFactory);
-        mainHeroFactory.Create(mainHeroConfig, _mainHeroSpawnPosition.position);
+        mainHeroFactory.Create(mainHeroConfig, _mainHeroSpawnPosition.position, projectileConfig);
     }
 
     private void Update()
