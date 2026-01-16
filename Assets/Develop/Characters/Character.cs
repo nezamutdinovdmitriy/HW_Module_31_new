@@ -14,6 +14,7 @@ public class Character : MonoBehaviour, IDirectionMovable, IDirectionRotatable, 
 
     public Vector3 CurrentVelocity => _mover.CurrentVelocity;
     public Vector3 Position => transform.position;
+    public Vector3 ForwardDirection => transform.forward;
     public Quaternion CurrentRotation => _rotator.CurrentRotation;
 
     public Transform CameraTarget => _followCameraTarget;
@@ -34,12 +35,12 @@ public class Character : MonoBehaviour, IDirectionMovable, IDirectionRotatable, 
 
     private void Update()
     {
-        _rotator.Update(Time.deltaTime);
+        _rotator?.Update(Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
-        _mover.Update(Time.fixedTime);
+        _mover?.Update(Time.fixedTime);
     }
 
     public void SetMoveDirection(Vector3 inputDirection) => _mover.SetInputDirection(inputDirection);

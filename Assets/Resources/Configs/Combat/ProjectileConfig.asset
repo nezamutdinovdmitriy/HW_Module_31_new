@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df26f446d5a9bfd43a69885cb736fc8f, type: 3}
   m_Name: ProjectileConfig
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 6284625019031531783, guid: 6353d351adaa092469b960537f905931,
+  <Prefab>k__BackingField: {fileID: 541467785922012193, guid: 6353d351adaa092469b960537f905931,
     type: 3}
-  <Speed>k__BackingField: 25
-  <MaxDistance>k__BackingField: 50
+  <Speed>k__BackingField: 30
+  <MaxDistance>k__BackingField: 30
   <Damage>k__BackingField: 0

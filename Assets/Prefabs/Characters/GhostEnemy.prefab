@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 725451413696519766}
   - component: {fileID: 4441213352956037093}
   m_Layer: 0
-  m_Name: GhostPlayer
+  m_Name: GhostEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -696,7 +696,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d11e6205c7cc9470aacd9fde3100bfe2, type: 2}
+  - {fileID: 2100000, guid: 508fdc4d6c10c554d8914c9b535d8351, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
