@@ -3,6 +3,7 @@ using UnityEngine;
 public class Bootstrap : MonoBehaviour
 {
     [SerializeField] private Transform _mainHeroSpawnPosition;
+    [SerializeField] private Transform _enemySpawnPosition;
 
     private ControllersUpdateService _controllersUpdateService;
 
@@ -16,10 +17,13 @@ public class Bootstrap : MonoBehaviour
         _controllersFactory = new();
 
         MainHeroConfig mainHeroConfig = Resources.Load<MainHeroConfig>("Configs/MainHeroConfig");
-        ProjectileConfig projectileConfig = Resources.Load<ProjectileConfig>("Configs/Combat/ProjectileConfig");
+        WandererConfig wandererConfig = Resources.Load<WandererConfig>("Configs/WandererConfig");
 
         MainHeroFactory mainHeroFactory = new(_controllersUpdateService, _characterFactory, _controllersFactory);
-        mainHeroFactory.Create(mainHeroConfig, _mainHeroSpawnPosition.position, projectileConfig);
+        mainHeroFactory.Create(mainHeroConfig, _mainHeroSpawnPosition.position);
+
+        EnemiesFactory enemiesFactory = new(_controllersUpdateService, _characterFactory, _controllersFactory);
+        enemiesFactory.CreateWanderer(wandererConfig, _enemySpawnPosition.position);
     }
 
     private void Update()

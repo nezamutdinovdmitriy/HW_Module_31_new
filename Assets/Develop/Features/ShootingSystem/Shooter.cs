@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Shooter
 {
-    private Projectile _projectilePrefab;
+    private readonly Projectile _projectilePrefab;
 
     public Shooter(Projectile projectilePrefab)
     {

@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 8979523928956405325}
   - component: {fileID: 3674860631237233172}
   - component: {fileID: 725451413696519766}
-  - component: {fileID: 4441213352956037093}
+  - component: {fileID: 3324962248860700869}
   m_Layer: 0
   m_Name: GhostEnemy
   m_TagString: Untagged
@@ -534,7 +534,7 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.5107056, z: 0}
---- !u!114 &4441213352956037093
+--- !u!114 &3324962248860700869
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -543,11 +543,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4283916442577980955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11ee1aac3f68bb74a97502cb22062122, type: 3}
+  m_Script: {fileID: 11500000, guid: b72546523ca98d443849c781f3009fc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followCameraTarget: {fileID: 7209926771469273003}
-  _firePoint: {fileID: 5512064581775708957}
 --- !u!1 &4284261093056270393
 GameObject:
   m_ObjectHideFlags: 0

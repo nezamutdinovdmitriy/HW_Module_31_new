@@ -4,7 +4,7 @@ public class PlayerShootableController : Controller
 {
     private const KeyCode ShootingKey = KeyCode.Space;
 
-    private IShootable _shootable;
+    private readonly IShootable _shootable;
 
     public PlayerShootableController(IShootable shootable)
     {

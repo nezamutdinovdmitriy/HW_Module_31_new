@@ -12,4 +12,22 @@ public class EnemiesFactory
         _charactersFactory = charactersFactory;
         _controllersFactory = controllersFactory;
     }
+
+    public Wanderer CreateWanderer(WandererConfig config, Vector3 spawnPosition)
+    {
+        Wanderer instance = _charactersFactory.CreateRigidbodyWanderer(
+            config.Prefab,
+            spawnPosition,
+            config.MoveSpeed,
+            config.RotationSpeed,
+            config.MaxHealth);
+
+        Controller controller = _controllersFactory.CreateEnemyRandomPassiveWandererController(instance, instance, 1f, 3f);
+
+        controller.Enable();
+
+        _controllersUpdateService.Add(controller);
+
+        return instance;
+    }
 }

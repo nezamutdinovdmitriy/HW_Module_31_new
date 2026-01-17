@@ -29,4 +29,28 @@ public class CharactersFactory
             throw new InvalidOperationException("Not found Rigidbody component");
         }
     }
+
+    public Wanderer CreateRigidbodyWanderer(
+        Wanderer prefab,
+        Vector3 spawnPosition,
+        float moveSpeed,
+        float rotationSpeed,
+        float maxHealth)
+    {
+        Wanderer instance = Object.Instantiate(prefab, spawnPosition, Quaternion.identity, null);
+
+        if (instance.TryGetComponent(out Rigidbody rigidbody))
+        {
+            RigidbodyDirectionalMover mover = new(rigidbody, moveSpeed);
+            RigidbodyDirectionalRotator rotator = new(rigidbody, rotationSpeed);
+
+            instance.Initialize(mover, rotator, maxHealth);
+
+            return instance;
+        }
+        else
+        {
+            throw new InvalidOperationException("Not found Rigidbody component");
+        }
+    }
 }

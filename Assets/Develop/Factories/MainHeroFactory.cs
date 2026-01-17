@@ -14,9 +14,9 @@ public class MainHeroFactory
         _controllersFactory = controllersFactory;
     }
 
-    public Character Create(MainHeroConfig config, Vector3 spawnPosition, ProjectileConfig projectileConfig)
+    public Character Create(MainHeroConfig config, Vector3 spawnPosition)
     {
-        Character instance = _charactersFactory.CreateRigidbodyCharacter(config.Prefab, spawnPosition, config.MoveSpeed, config.RotationSpeed, config.MaxHealth, projectileConfig.Prefab);
+        Character instance = _charactersFactory.CreateRigidbodyCharacter(config.Prefab, spawnPosition, config.MoveSpeed, config.RotationSpeed, config.MaxHealth, config.ProjectilesConfig.Prefab);
 
         Controller controller = _controllersFactory.CreateMainHeroController(instance);
         controller.Enable();
