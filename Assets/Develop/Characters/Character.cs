@@ -35,7 +35,12 @@ public class Character : MonoBehaviour, IDirectionMovable, IDirectionRotatable, 
 
     private void Update()
     {
+        if (_currentHealth <= 0)
+            Destroy(gameObject);
+
         _rotator?.Update(Time.deltaTime);
+
+        Debug.Log(_currentHealth);
     }
 
     private void FixedUpdate()

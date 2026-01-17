@@ -1,15 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Bootstrap : MonoBehaviour
 {
-    [SerializeField] private Transform _mainHeroSpawnPosition;
-    [SerializeField] private Transform _enemySpawnPosition;
-
     private ControllersUpdateService _controllersUpdateService;
 
     private CharactersFactory _characterFactory;
     private ControllersFactory _controllersFactory;
-    
+
+    private EnemiesSpawner _enemiesSpawner;
+    private WandererConfig _wandererConfig;
+
+
     private void Awake()
     {
         _controllersUpdateService = new();
@@ -17,17 +19,22 @@ public class Bootstrap : MonoBehaviour
         _controllersFactory = new();
 
         MainHeroConfig mainHeroConfig = Resources.Load<MainHeroConfig>("Configs/MainHeroConfig");
-        WandererConfig wandererConfig = Resources.Load<WandererConfig>("Configs/WandererConfig");
+        _wandererConfig = Resources.Load<WandererConfig>("Configs/WandererConfig");
+
+        LevelConfig levelConfig = Resources.Load<LevelConfig>("Configs/Level/LevelConfig");
 
         MainHeroFactory mainHeroFactory = new(_controllersUpdateService, _characterFactory, _controllersFactory);
-        mainHeroFactory.Create(mainHeroConfig, _mainHeroSpawnPosition.position);
-
         EnemiesFactory enemiesFactory = new(_controllersUpdateService, _characterFactory, _controllersFactory);
-        enemiesFactory.CreateWanderer(wandererConfig, _enemySpawnPosition.position);
+
+        _enemiesSpawner = new(enemiesFactory, levelConfig.EnemySpawnPoints, 5f);
+
+        mainHeroFactory.Create(mainHeroConfig, levelConfig.PlayerSpawnPoint);
     }
 
     private void Update()
     {
         _controllersUpdateService?.Update(Time.deltaTime);
+
+        _enemiesSpawner.Spawn(_wandererConfig);
     }
 }

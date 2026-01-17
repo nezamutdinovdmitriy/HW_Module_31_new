@@ -15,4 +15,7 @@ MonoBehaviour:
   <Prefab>k__BackingField: {fileID: 4441213352956037093, guid: 892e519a894319948a0ac4b938112254,
     type: 3}
   <MoveSpeed>k__BackingField: 9
-  <RotationSpeed>k__BackingField: 900
+  <RotationSpeed>k__BackingField: 800
+  <MaxHealth>k__BackingField: 100
+  <ProjectilesConfig>k__BackingField: {fileID: 11400000, guid: 04db67d7803dd83448a8352a259d3688,
+    type: 2}

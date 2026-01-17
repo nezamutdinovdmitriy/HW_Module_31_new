@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469a5b6f82ad0394386607e08116dc3b, type: 3}
   m_Name: WandererConfig
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 0}
-  <MoveSpeed>k__BackingField: 9
+  <Prefab>k__BackingField: {fileID: 3324962248860700869, guid: abf57da1cae29224b856c4b05db3099c,
+    type: 3}
+  <MoveSpeed>k__BackingField: 5
   <RotationSpeed>k__BackingField: 900
   <MaxHealth>k__BackingField: 100
+  <Damage>k__BackingField: 50

@@ -35,7 +35,8 @@ public class CharactersFactory
         Vector3 spawnPosition,
         float moveSpeed,
         float rotationSpeed,
-        float maxHealth)
+        float maxHealth,
+        float damage)
     {
         Wanderer instance = Object.Instantiate(prefab, spawnPosition, Quaternion.identity, null);
 
@@ -44,7 +45,7 @@ public class CharactersFactory
             RigidbodyDirectionalMover mover = new(rigidbody, moveSpeed);
             RigidbodyDirectionalRotator rotator = new(rigidbody, rotationSpeed);
 
-            instance.Initialize(mover, rotator, maxHealth);
+            instance.Initialize(mover, rotator, maxHealth, damage);
 
             return instance;
         }

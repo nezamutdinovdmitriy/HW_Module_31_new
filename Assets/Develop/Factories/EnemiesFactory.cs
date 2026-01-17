@@ -20,7 +20,8 @@ public class EnemiesFactory
             spawnPosition,
             config.MoveSpeed,
             config.RotationSpeed,
-            config.MaxHealth);
+            config.MaxHealth,
+            config.Damage);
 
         Controller controller = _controllersFactory.CreateEnemyRandomPassiveWandererController(instance, instance, 1f, 3f);
 
