@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Character : MonoBehaviour, IDirectionMovable, IDirectionRotatable, IHealth, IDamageable, IShootable
+public class Character : MonoDestroyable, IDirectionMovable, IDirectionRotatable, IHealth, IDamageable, IShootable
 {
     [SerializeField] private Transform _followCameraTarget;
     [SerializeField] private Transform _firePoint;
@@ -36,7 +36,7 @@ public class Character : MonoBehaviour, IDirectionMovable, IDirectionRotatable, 
     private void Update()
     {
         if (_currentHealth <= 0)
-            Destroy(gameObject);
+            Destroy();
 
         _rotator?.Update(Time.deltaTime);
 

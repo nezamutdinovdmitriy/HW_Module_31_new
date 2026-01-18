@@ -9,6 +9,8 @@ public class EnemiesSpawner
     private readonly float _timeToSpawn;
     private float _time;
 
+    public List<Wanderer> SpawnedEntities = new List<Wanderer>();
+
     public EnemiesSpawner(EnemiesFactory enemiesFactory, List<Vector3> spawnPoints, float timeToSpawn)
     {
         _enemiesFactory = enemiesFactory;
@@ -25,6 +27,8 @@ public class EnemiesSpawner
             Wanderer instance = _enemiesFactory.CreateWanderer(config, _spawnPoints[Random.Range(0, _spawnPoints.Count)]);
 
             _time = 0;
+
+            SpawnedEntities.Add(instance);
         }
     }
 }

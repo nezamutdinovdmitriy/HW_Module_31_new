@@ -21,7 +21,7 @@ public class MainHeroFactory
         Controller controller = _controllersFactory.CreateMainHeroController(instance);
         controller.Enable();
 
-        _controllersUpdateService.Add(controller);
+        _controllersUpdateService.Add(controller, () => instance.IsDestroyed);
 
         CinemachineVirtualCamera followCameraPrefab = Resources.Load<CinemachineVirtualCamera>("Cameras/FollowCamera");
         CinemachineVirtualCamera followCamera = Object.Instantiate(followCameraPrefab);

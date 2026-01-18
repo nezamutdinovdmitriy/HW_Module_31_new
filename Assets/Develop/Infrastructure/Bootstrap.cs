@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bootstrap : MonoBehaviour
@@ -8,9 +7,7 @@ public class Bootstrap : MonoBehaviour
     private CharactersFactory _characterFactory;
     private ControllersFactory _controllersFactory;
 
-    private EnemiesSpawner _enemiesSpawner;
-    private WandererConfig _wandererConfig;
-
+    private GameplayCycle _gameplayCycle;
 
     private void Awake()
     {
@@ -19,22 +16,31 @@ public class Bootstrap : MonoBehaviour
         _controllersFactory = new();
 
         MainHeroConfig mainHeroConfig = Resources.Load<MainHeroConfig>("Configs/MainHeroConfig");
-        _wandererConfig = Resources.Load<WandererConfig>("Configs/WandererConfig");
+        WandererConfig wandererConfig = Resources.Load<WandererConfig>("Configs/WandererConfig");
 
         LevelConfig levelConfig = Resources.Load<LevelConfig>("Configs/Level/LevelConfig");
+
 
         MainHeroFactory mainHeroFactory = new(_controllersUpdateService, _characterFactory, _controllersFactory);
         EnemiesFactory enemiesFactory = new(_controllersUpdateService, _characterFactory, _controllersFactory);
 
-        _enemiesSpawner = new(enemiesFactory, levelConfig.EnemySpawnPoints, 5f);
+        EnemiesSpawner enemiesSpawner = new(enemiesFactory, levelConfig.EnemySpawnPoints, 5f);
 
-        mainHeroFactory.Create(mainHeroConfig, levelConfig.PlayerSpawnPoint);
+        _gameplayCycle = new GameplayCycle(mainHeroFactory, mainHeroConfig, levelConfig, enemiesSpawner);
+
+        _gameplayCycle.Prepare();
+
+        _gameplayCycle.Launch();
+    }
+
+    private void OnDestroy()
+    {
+        _gameplayCycle?.Dispose();
     }
 
     private void Update()
     {
         _controllersUpdateService?.Update(Time.deltaTime);
-
-        _enemiesSpawner.Spawn(_wandererConfig);
+        _gameplayCycle?.Update(Time.deltaTime);
     }
 }

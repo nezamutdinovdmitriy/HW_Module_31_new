@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Wanderer : MonoBehaviour, IDirectionMovable, IDirectionRotatable, IHealth, IDamageable
+public class Wanderer : MonoDestroyable, IDirectionMovable, IDirectionRotatable, IHealth, IDamageable
 {
     private float _maxHealth;
     private float _currentHealth;
