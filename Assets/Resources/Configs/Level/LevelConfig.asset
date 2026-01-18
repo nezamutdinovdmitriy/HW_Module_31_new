@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e681960e7e32f3947a10a20c5ee59e8d, type: 3}
   m_Name: LevelConfig
   m_EditorClassIdentifier: 
-  <WinCondition>k__BackingField: 0
-  <LoseCondition>k__BackingField: 0
+  <WinCondition>k__BackingField: 1
+  <LoseCondition>k__BackingField: 1
   <EnemyConfig>k__BackingField: {fileID: 11400000, guid: de8b86c76f4f40b4785c31db76fc27c1,
     type: 2}
   <EnemySpawnPoints>k__BackingField:

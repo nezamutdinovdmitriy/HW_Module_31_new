@@ -1,4 +1,4 @@
-public enum LoseCondition
+public enum LoseConditionType
 {
     PlayerDeath,
     ArenaOverflow

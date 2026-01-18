@@ -1,4 +1,4 @@
-public enum WinCondition
+public enum WinConditionType
 {
     Survival,
     Elimination

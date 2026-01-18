@@ -39,8 +39,6 @@ public class Character : MonoDestroyable, IDirectionMovable, IDirectionRotatable
             Destroy();
 
         _rotator?.Update(Time.deltaTime);
-
-        Debug.Log(_currentHealth);
     }
 
     private void FixedUpdate()

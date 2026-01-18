@@ -5,32 +5,37 @@ public class GameMode
     public event Action Win;
     public event Action Defeat;
 
+    private GameCondition _winCondition;
+    private GameCondition _defeatCondition;
+
     private LevelConfig _levelConfig;
     private EnemiesSpawner _enemySpawner;
 
     private bool _isRunning;
 
-    public GameMode(LevelConfig levelConfig, EnemiesSpawner enemySpawner)
+    public GameMode(LevelConfig levelConfig, EnemiesSpawner enemySpawner, GameCondition winCondition, GameCondition defeatCondition)
     {
         _levelConfig = levelConfig;
         _enemySpawner = enemySpawner;
+        _winCondition = winCondition;
+        _defeatCondition = defeatCondition;
     }
 
     public void Start()
     {
         switch (_levelConfig.WinCondition)
         {
-            case WinCondition.Survival:
+            case WinConditionType.Survival:
                 break;
-            case WinCondition.Elimination:
+            case WinConditionType.Elimination:
                 break;
         }
 
         switch (_levelConfig.LoseCondition)
         {
-            case LoseCondition.PlayerDeath:
+            case LoseConditionType.PlayerDeath:
                 break;
-            case LoseCondition.ArenaOverflow:
+            case LoseConditionType.ArenaOverflow:
                 break;
         }
 
@@ -39,6 +44,20 @@ public class GameMode
 
     public void Update(float deltaTime)
     {
+        if (_isRunning == false)
+            return;
+
+        if (_winCondition.IsMet())
+        {
+            ProcessWin();
+            return;
+        }
+        else if(_defeatCondition.IsMet())
+        {
+            ProcessDefeat();
+            return;
+        }
+
         _enemySpawner.Spawn(_levelConfig.EnemyConfig);
     }
 
@@ -59,6 +78,9 @@ public class GameMode
         _isRunning = false;
 
         foreach (Wanderer wanderer in _enemySpawner.SpawnedEntities)
-            wanderer.Destroy();
+        {
+            if(wanderer != null)
+                wanderer.Destroy();
+        }    
     }
 }

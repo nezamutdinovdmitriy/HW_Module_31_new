@@ -36,8 +36,8 @@ public class Wanderer : MonoDestroyable, IDirectionMovable, IDirectionRotatable,
 
     private void Update()
     {
-        if(IsDead)
-            Destroy(gameObject);
+        if (IsDead)
+            Destroy();
 
         _rotator?.Update(Time.deltaTime);
     }
@@ -55,7 +55,7 @@ public class Wanderer : MonoDestroyable, IDirectionMovable, IDirectionRotatable,
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.TryGetComponent(out Character character))
+        if (collision.gameObject.TryGetComponent(out Character character))
             character.TakeDamage(_touchDamage);
     }
 }

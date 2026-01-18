@@ -1,12 +1,16 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemiesSpawner
 {
-    private readonly EnemiesFactory _enemiesFactory;
+    public event Action EnemyKilled;
 
+    private readonly EnemiesFactory _enemiesFactory;
     private readonly List<Vector3> _spawnPoints;
     private readonly float _timeToSpawn;
+
     private float _time;
 
     public List<Wanderer> SpawnedEntities = new List<Wanderer>();
@@ -28,7 +32,24 @@ public class EnemiesSpawner
 
             _time = 0;
 
+            instance.Destroyed += OnEnemyDestroyed;
+            
             SpawnedEntities.Add(instance);
         }
+    }
+
+    private void OnEnemyDestroyed(MonoDestroyable entity)
+    {
+        entity.Destroyed -= OnEnemyDestroyed;
+
+        if (entity is Wanderer wanderer && wanderer.IsDead)
+            EnemyKilled?.Invoke();
+    }
+
+    public void Reset()
+    {
+        _time = 0;
+        SpawnedEntities.Clear();
+        EnemyKilled = null;
     }
 }
