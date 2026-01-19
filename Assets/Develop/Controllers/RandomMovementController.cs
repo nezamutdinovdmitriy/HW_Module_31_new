@@ -20,6 +20,9 @@ public class RandomMovementController : Controller
         _minTimeToChangeDirection = minTimeToChangeDirection;
         _maxTimeToChangeDirection = maxTimeToChangeDirection;
 
+        _targetDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
+        _movable.SetMoveDirection(_targetDirection);
+
         SetRandomTimeToChange();
     }
 

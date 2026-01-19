@@ -14,7 +14,6 @@ public class Character : MonoDestroyable, IDirectionMovable, IDirectionRotatable
 
     public Vector3 CurrentVelocity => _mover.CurrentVelocity;
     public Vector3 Position => transform.position;
-    public Vector3 ForwardDirection => transform.forward;
     public Quaternion CurrentRotation => _rotator.CurrentRotation;
 
     public Transform CameraTarget => _followCameraTarget;
@@ -46,11 +45,10 @@ public class Character : MonoDestroyable, IDirectionMovable, IDirectionRotatable
         _mover?.Update(Time.fixedDeltaTime);
     }
 
-    public void SetMoveDirection(Vector3 inputDirection) => _mover.SetInputDirection(inputDirection);
-
-    public void SetRotationDirection(Vector3 inputDirection) => _rotator.SetInputDirection(inputDirection);
-
     public void TakeDamage(float damage) => _currentHealth -= damage;
 
     public void Shoot() => _shooter.Shoot(_firePoint);
+
+    public void SetMoveDirection(Vector3 inputDirection) => _mover.SetInputDirection(inputDirection);
+    public void SetRotationDirection(Vector3 inputDirection) => _rotator.SetInputDirection(inputDirection);
 }

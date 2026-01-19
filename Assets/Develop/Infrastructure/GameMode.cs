@@ -21,26 +21,7 @@ public class GameMode
         _defeatCondition = defeatCondition;
     }
 
-    public void Start()
-    {
-        switch (_levelConfig.WinCondition)
-        {
-            case WinConditionType.Survival:
-                break;
-            case WinConditionType.Elimination:
-                break;
-        }
-
-        switch (_levelConfig.LoseCondition)
-        {
-            case LoseConditionType.PlayerDeath:
-                break;
-            case LoseConditionType.ArenaOverflow:
-                break;
-        }
-
-        _isRunning = true;
-    }
+    public void Start() => _isRunning = true;
 
     public void Update(float deltaTime)
     {

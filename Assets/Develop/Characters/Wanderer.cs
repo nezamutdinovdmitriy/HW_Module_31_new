@@ -10,15 +10,10 @@ public class Wanderer : MonoDestroyable, IDirectionMovable, IDirectionRotatable,
     private RigidbodyDirectionalRotator _rotator;
 
     public Vector3 Position => transform.position;
-
-    public Vector3 ForwardDirection => transform.forward;
-
     public Vector3 CurrentVelocity => _mover.CurrentVelocity;
-
     public Quaternion CurrentRotation => _rotator.CurrentRotation;
 
     public float MaxHealth => _maxHealth;
-
     public float CurrentHealth => _currentHealth;
 
     public bool IsDead => _currentHealth <= 0;
@@ -47,11 +42,10 @@ public class Wanderer : MonoDestroyable, IDirectionMovable, IDirectionRotatable,
         _mover?.Update(Time.fixedDeltaTime);
     }
 
-    public void SetMoveDirection(Vector3 inputDirection) => _mover.SetInputDirection(inputDirection);
-
-    public void SetRotationDirection(Vector3 inputDirection) => _rotator.SetInputDirection(inputDirection);
-
     public void TakeDamage(float damage) => _currentHealth -= damage;
+
+    public void SetMoveDirection(Vector3 inputDirection) => _mover.SetInputDirection(inputDirection);
+    public void SetRotationDirection(Vector3 inputDirection) => _rotator.SetInputDirection(inputDirection);
 
     private void OnCollisionEnter(Collision collision)
     {
