@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Shooter
 {
-    private readonly Projectile _projectilePrefab;
+    private readonly ProjectileFactory _projectileFactory;
 
-    public Shooter(Projectile projectilePrefab)
+    public Shooter(ProjectileFactory projectileFactory)
     {
-        _projectilePrefab = projectilePrefab;
+        _projectileFactory = projectileFactory;
     }
 
-    public void Shoot(Transform firePoint) => Object.Instantiate(_projectilePrefab, firePoint.position, firePoint.rotation, null);
+    public void Shoot(Transform firePoint) => _projectileFactory.CreateStandartProjectile(firePoint);
 }

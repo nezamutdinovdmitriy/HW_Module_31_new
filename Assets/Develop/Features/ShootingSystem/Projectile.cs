@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private ProjectileConfig _config;
     [SerializeField] private Rigidbody _rigidbody;
 
+    private ProjectileConfig _config;
     private Vector3 _startPosition;
     private float _sqrMaxDistance;
+
+    public void Initialize(ProjectileConfig config)
+    {
+        _config = config;
+    }
 
     private void Start()
     {
@@ -29,9 +34,7 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent(out IDamageable damageable))
-        {
             damageable.TakeDamage(_config.Damage);
-        }
 
         Destroy(gameObject);
     }

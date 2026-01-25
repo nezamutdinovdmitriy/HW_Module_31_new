@@ -9,7 +9,7 @@ public class GameMode
     private GameCondition _defeatCondition;
 
     private LevelConfig _levelConfig;
-    private EnemiesSpawner _enemySpawner;
+    private EnemiesSpawner _enemySpawner;   
 
     private bool _isRunning;
 

@@ -20,15 +20,24 @@ public class Bootstrap : MonoBehaviour
 
         LevelConfig levelConfig = Resources.Load<LevelConfig>("Configs/Level/LevelConfig");
 
-
         MainHeroFactory mainHeroFactory = new(_controllersUpdateService, _characterFactory, _controllersFactory);
         EnemiesFactory enemiesFactory = new(_controllersUpdateService, _characterFactory, _controllersFactory);
 
         EnemiesSpawner enemiesSpawner = new(enemiesFactory, levelConfig.EnemySpawnPoints, 5f);
 
-        _gameplayCycle = new GameplayCycle(mainHeroFactory, mainHeroConfig, levelConfig, enemiesSpawner);
+        ProjectileFactory projectileFactory = new(mainHeroConfig.ProjectilesConfig);
 
-        _gameplayCycle.Prepare();
+        Character mainHero = mainHeroFactory.Create(mainHeroConfig, levelConfig.PlayerSpawnPoint, projectileFactory);
+
+        ConditionsFactory conditionsFactory = new(mainHero, enemiesSpawner);
+
+        GameMode gameMode = new(
+            levelConfig,
+            enemiesSpawner,
+            conditionsFactory.CreateWinCondition(levelConfig.WinCondition), 
+            conditionsFactory.CreateLoseCondition(levelConfig.LoseCondition));
+
+        _gameplayCycle = new(gameMode);
 
         _gameplayCycle.Launch();
     }

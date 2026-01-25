@@ -10,7 +10,8 @@ public class CharactersFactory
         float moveSpeed,
         float rotationSpeed,
         float maxHealth,
-        Projectile projectilePrefab)
+        ProjectileFactory projectileFactory,
+        ProjectileConfig projectileConfig)
     {
         Character instance = Object.Instantiate(characterPrefab, spawnPosition, Quaternion.identity, null);
 
@@ -18,7 +19,8 @@ public class CharactersFactory
         {
             RigidbodyDirectionalMover mover = new(rigidbody, moveSpeed);
             RigidbodyDirectionalRotator rotator = new(rigidbody, rotationSpeed);
-            Shooter shooter = new(projectilePrefab);
+
+            Shooter shooter = new(projectileFactory);
 
             instance.Initialize(mover, rotator, maxHealth, shooter);
 
